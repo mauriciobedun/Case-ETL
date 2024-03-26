@@ -1,18 +1,23 @@
-## Projeto de Análise de Dados para Empresa de Bicicletas
-- Introdução
-O objetivo deste projeto é demonstrar habilidades em modelagem conceitual de dados, infraestruturação de banco de dados e análise de dados utilizando Python e SQL. O cenário fictício escolhido para este desafio é uma empresa especializada na produção de bicicletas. Iniciamos com a modelagem dos dados, seguida pela criação da infraestrutura necessária para armazenar esses dados em um banco de dados no Google Cloud Platform (GCP). Posteriormente, foram desenvolvidos scripts em Python para inserção de dados a partir de arquivos CSV e realizadas análises de dados utilizando consultas SQL.
+# Projeto de Análise de Dados para Empresa de Bicicletas
 
-- Estrutura e Inserção de Dados
-O projeto foi iniciado com a criação de um banco de dados no GCP e a modelagem conceitual dos dados da empresa. Utilizamos Python para desenvolver um script que lê arquivos CSV contendo os dados da empresa e os insere nas tabelas correspondentes do banco de dados. Esse script proporciona uma forma eficiente de carregar grandes volumes de dados, mantendo a integridade e a consistência das informações.
+## 1. Introdução
+O projeto consiste em um sistema de análise de dados para uma empresa fictícia de produção de bicicletas. O objetivo é extrair insights valiosos dos dados da empresa por meio de análises SQL e Python. A arquitetura é composta por três componentes principais: modelagem de dados, infraestruturação do banco de dados e processamento e análise dos dados.
 
-- Análises Realizadas
-Após a inserção dos dados, foram elaboradas consultas SQL para responder a diversas questões analíticas sobre o negócio. As análises incluíram:
+## 2. Modelagem de Dados
+Para representar os dados da empresa, foram definidas classes de modelo em Python usando a biblioteca SQLAlchemy. Cada classe representa uma tabela do banco de dados, incluindo detalhes de pedidos, cabeçalhos de pedidos, produtos, ofertas especiais, clientes e pessoas. Essas classes servem como uma camada de abstração entre os dados brutos e o banco de dados, facilitando a inserção e recuperação de dados.
 
-Identificação da quantidade de linhas na tabela Sales.SalesOrderDetail por SalesOrderID, com pelo menos três linhas de detalhes.
-Determinação dos 3 produtos mais vendidos (pela soma de OrderQty) por DaysToManufacture, ligando as tabelas Sales.SalesOrderDetail, Sales.SpecialOfferProduct e Production.Product.
-Listagem de nomes de clientes e contagem de pedidos efetuados, ligando as tabelas Person.Person, Sales.Customer e Sales.SalesOrderHeader.
-Cálculo da soma total de produtos (OrderQty) por ProductID e OrderDate, utilizando as tabelas Sales.SalesOrderHeader, Sales.SalesOrderDetail e Production.Product.
-Filtragem das ordens feitas durante setembro de 2011 com TotalDue acima de 1.000, exibindo os campos SalesOrderID, OrderDate e TotalDue da tabela Sales.SalesOrderHeader.
+## 3. Infraestruturação do Banco de Dados
+O banco de dados foi hospedado no Google Cloud Platform (GCP) e configurado para armazenar os dados da empresa. A conexão com o banco de dados é estabelecida usando uma URL fornecida por variáveis de ambiente. A criação das tabelas é automatizada através da função `create_tables`, que utiliza a base declarativa definida anteriormente para criar as tabelas correspondentes no banco de dados.
+
+## 4. Processamento e Análise dos Dados
+Os dados são fornecidos em arquivos CSV, que são lidos e processados usando a biblioteca pandas. Antes de inserir os dados no banco de dados, é realizada uma limpeza e transformação dos dados, incluindo a conversão de vírgulas para pontos em campos numéricos e a conversão de strings para tipos booleanos onde necessário. Após o processamento, os dados são inseridos no banco de dados usando a função `insert_data_to_db`.
+
+## 5. Análises Realizadas
+Após a inserção dos dados, foram realizadas análises SQL para responder a diversas questões sobre o negócio, como a quantidade de linhas na tabela `Sales.SalesOrderDetail` por `SalesOrderID`, os produtos mais vendidos por `DaysToManufacture`, a contagem de pedidos por cliente e a soma total de produtos por `ProductID` e `OrderDate`.
+
+## 6. Conclusão
+Este projeto demonstra uma abordagem completa para analisar dados de uma empresa de produção de bicicletas. A combinação de modelagem de dados eficiente, infraestruturação do banco de dados e análises robustas permite extrair insights valiosos que podem ser utilizados para melhorar as operações e tomadas de decisão da empresa.
+
 
 - Consultas SQL
 As consultas SQL utilizadas para realizar estas análises são apresentadas abaixo:
